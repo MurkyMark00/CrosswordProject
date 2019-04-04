@@ -22,7 +22,6 @@ namespace CrosswordProject
             while (true)
             {
                 Console.Write($"\nRow {rowNumber} : ");
-                ++rowNumber;
                 string input = Console.ReadLine();
 
                 // If user just started, setting the row length that has to be the same with other rows.
@@ -33,20 +32,16 @@ namespace CrosswordProject
                     rows.Add(input.Replace(" ", String.Empty));
                 }
                 // Other valid row entries go here.
-                else if (rowNumber > 1 && input.All(p => char.IsLetter(p)) && !String.IsNullOrEmpty(input))
+                else if (rowNumber > 1 && input.All(p => char.IsLetter(p))
+                 && !String.IsNullOrEmpty(input) && rowLength == input.Length)
                 {
-                    if (rowLength != input.Length)
-                    {
-                        Console.WriteLine("Please enter matching length of rows.");
-                        continue;
-                    }
-                    else rows.Add(input.Replace(" ", String.Empty));
+                    rows.Add(input.Replace(" ", String.Empty));
                 }
                 // Going back.
                 else if (rowNumber > 1 && input == "-")
                 {
+                    rowNumber--;
                     rows.RemoveAt(rows.Count - 1);
-                    --rowNumber;
                     continue;
                 }
                 // If the entry is not valid, it starts creating the char[,].
@@ -55,6 +50,7 @@ namespace CrosswordProject
                     Console.WriteLine("Processing...");
                     break;
                 }
+                ++rowNumber;
             }
             // This is the instance where I want to return a null object.
             if (rows.Count == 0) return null;
