@@ -30,7 +30,7 @@ namespace CrosswordProject
                     tempWord.Clear();
                     for (int k = j; k < puzzle.GetLength(1); ++k)
                     {
-                        // Check for word from puzzle[i, j] to puzzle[i, k]
+                        // Check for word from puzzle[i, j] to puzzle[i, puzzle.GetLength(1)]
                         tempWord.Add(puzzle[i,k]);
                         string tempString = new string(tempWord.ToArray());
 
