@@ -33,9 +33,15 @@ namespace CrosswordProject
                 }
                 // Other valid row entries go here.
                 else if (rowNumber > 1 && input.All(p => char.IsLetter(p))
-                 && !String.IsNullOrEmpty(input) && rowLength == input.Length)
+                 && !String.IsNullOrEmpty(input))
                 {
-                    rows.Add(input.Replace(" ", String.Empty));
+                    // If row lengths are equal, add the input.
+                    if (rowLength == input.Length) rows.Add(input.Replace(" ", String.Empty));
+                    else
+                    {
+                        Console.WriteLine($"Please enter a row with {rowLength} characters.");
+                        continue;
+                    }
                 }
                 // Going back.
                 else if (rowNumber > 1 && input == "-")
@@ -44,11 +50,17 @@ namespace CrosswordProject
                     rows.RemoveAt(rows.Count - 1);
                     continue;
                 }
-                // If the entry is not valid, it starts creating the char[,].
-                else
+                // If the input is empty, it starts creating the char[,].
+                else if (String.IsNullOrEmpty(input))
                 {
                     Console.WriteLine("Processing...");
                     break;
+                }
+                // Non-valid inputs.
+                else
+                {
+                    Console.WriteLine("Please enter a valid input.");
+                    continue;
                 }
                 ++rowNumber;
             }

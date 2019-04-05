@@ -28,7 +28,7 @@ namespace CrosswordProject
                 for (int j = 0; j < puzzle.GetLength(1); ++j)
                 {
                     tempWord.Clear();
-                    for (int k = j; k < puzzle.GetLength(1); k++)
+                    for (int k = j; k < puzzle.GetLength(1); ++k)
                     {
                         // Check for word from puzzle[i, j] to puzzle[i, k]
                         tempWord.Add(puzzle[i,k]);
